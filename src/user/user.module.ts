@@ -6,10 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserRepository } from './adapter/out.persistence/user.repository';
 import { UserMapper } from './mapper/user.mapper';
 import { UserAdapter } from './adapter/out.persistence/user.userAdapter';
+import { UserGrpcController } from './adapter/in.web/user.grpcController';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
-  controllers: [UserController],
+  controllers: [UserController, UserGrpcController],
   providers: [
     {
       provide: 'RegisterUsecase',

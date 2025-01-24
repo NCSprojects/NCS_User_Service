@@ -9,6 +9,7 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Delete,
   Inject,
+  Logger,
 } from '@nestjs/common';
 import { UserDto } from '../../dto/create-user.dto';
 import { UserEntity } from '../../entities/user.entity';
@@ -17,6 +18,7 @@ import { UserRegisterUseCase } from '../../application/port/in/user.findUseCase'
 
 @Controller('users')
 export class UserController {
+  private readonly logger = new Logger(UserController.name);
   constructor(
     @Inject('RegisterUsecase')
     private readonly userRegisterUseCase: UserRegisterUseCase,

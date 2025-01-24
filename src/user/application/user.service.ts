@@ -16,7 +16,11 @@ export class UserService implements UserRegisterUseCase {
 
   async saveUserInfo(createUserDto: UserDto): Promise<UserDto> {
     const user: User = this.userMapper.toDomainfromDto(createUserDto);
-    const userEntity: UserEntity = await this.userAdapter.createUser(user);
+    const requestUserEntity: UserEntity =
+      this.userMapper.toEntityfromDomain(user);
+    const userEntity: UserEntity =
+      await this.userAdapter.createUser(requestUserEntity);
+    console.log(userEntity);
     return this.userMapper.toDtofromEntity(userEntity);
   }
 

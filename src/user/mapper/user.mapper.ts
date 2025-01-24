@@ -5,11 +5,13 @@ import { UserDto } from '../dto/create-user.dto';
 export class UserMapper {
   toDomainfromEntity(userEntity: UserEntity): User {
     const user: User = new User();
-    user.randomId = userEntity.id;
-    user.preRev = userEntity.preRev;
-    user.adCnt = userEntity.adCnt;
-    user.cdCnt = userEntity.cdCnt;
-    user.regDt = userEntity.regDt;
+    user.create(
+      userEntity.id,
+      userEntity.preRev,
+      userEntity.adCnt,
+      userEntity.cdCnt,
+      userEntity.regDt,
+    );
     return user;
   }
   toEntityfromDomain(user: User): UserEntity {
@@ -41,11 +43,13 @@ export class UserMapper {
   }
   toDomainfromDto(userDto: UserDto): User {
     const user: User = new User();
-    user.randomId = userDto.id;
-    user.preRev = userDto.preRev;
-    user.adCnt = userDto.adCnt;
-    user.cdCnt = userDto.cdCnt;
-    user.regDt = userDto.regDt;
+    user.create(
+      userDto.id,
+      userDto.preRev,
+      userDto.adCnt,
+      userDto.cdCnt,
+      userDto.regDt,
+    );
     return user;
   }
 }
