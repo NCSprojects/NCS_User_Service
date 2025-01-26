@@ -22,7 +22,7 @@ async function bootstrap() {
     options: {
       package: 'user',
       protoPath: join(__dirname, './proto/user.proto'),
-      url: '0.0.0.0:50053', // UserService의 gRPC 서버 주소
+      url: process.env.GRPC_URL,
     },
   });
   await app.startAllMicroservices();
