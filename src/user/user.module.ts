@@ -18,7 +18,14 @@ import { UserGrpcController } from './adapter/in.web/user.grpcController';
     },
     UserRepository,
     UserMapper,
-    UserAdapter,
+    {
+      provide: 'UserSaveUser',
+      useClass: UserAdapter,
+    },
+    {
+      provide: 'UserLoadUser',
+      useClass: UserAdapter,
+    },
   ],
   exports: [],
 })

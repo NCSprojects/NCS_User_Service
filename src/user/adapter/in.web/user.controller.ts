@@ -35,14 +35,14 @@ export class UserController {
   // }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.userRegisterUseCase.findByRandomIdUserInfo(+id);
+  findOne(@Param('id') id: string) {
+    return this.userRegisterUseCase.findByRandomIdUserInfo(id);
   }
 
   @Get('verify/:id')
-  async verifyOne(@Param('id') id: number) {
+  async verifyOne(@Param('id') id: string) {
     const user: UserEntity =
-      await this.userRegisterUseCase.findByRandomIdUserInfo(+id);
+      await this.userRegisterUseCase.findByRandomIdUserInfo(id);
     return { valid: !!user };
   }
 

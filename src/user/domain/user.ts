@@ -1,5 +1,5 @@
 export class User {
-  randomId: number;
+  randomId: string;
   preRev: boolean;
   adCnt: number;
   cdCnt: number;
@@ -8,7 +8,7 @@ export class User {
   constructor() {}
 
   public create(
-    randomId: number,
+    randomId: string,
     preRev: boolean,
     adCnt: number,
     cdCnt: number,

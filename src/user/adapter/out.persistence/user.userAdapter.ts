@@ -11,7 +11,7 @@ export class UserAdapter implements UserLoadUser, UserSaveUser {
   async createUser(user: UserEntity): Promise<UserEntity> {
     return await this.usersRepository.createUser(user);
   }
-  async findByRandomId(id: number): Promise<UserEntity> {
+  async findByRandomId(id: string): Promise<UserEntity> {
     return await this.usersRepository.findById(id);
   }
 }

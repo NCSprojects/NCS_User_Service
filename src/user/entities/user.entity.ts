@@ -1,9 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-@Entity('users')
+@Entity('USERS')
 export class UserEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryColumn('varchar', { length: 6 })
+  id: string;
   @Column('boolean')
   preRev: boolean; // 예약을 미리했나
   @Column()

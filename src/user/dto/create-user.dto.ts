@@ -1,5 +1,5 @@
 export class UserDto {
-  id: number;
+  id: string;
   preRev: boolean;
   adCnt: number;
   cdCnt: number;

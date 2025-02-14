@@ -1,16 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { UserDto } from '../dto/create-user.dto';
 //import { UpdateUserDto } from './dto/update-user.dto';
 import { UserRegisterUseCase } from './port/in/user.findUseCase';
-import { UserAdapter } from '../adapter/out.persistence/user.userAdapter';
 import { UserMapper } from '../mapper/user.mapper';
 import { UserEntity } from '../entities/user.entity';
 import { User } from '../domain/user';
+import { UserSaveUser } from './port/out/user.saveUser';
+import { UserLoadUser } from './port/out/user.loadUser';
 
 @Injectable()
 export class UserService implements UserRegisterUseCase {
   constructor(
-    private readonly userAdapter: UserAdapter,
+    @Inject('UserSaveUser') private readonly userSaveUser: UserSaveUser,
+    @Inject('UserLoadUser') private readonly userLoadUser: UserLoadUser,
     private readonly userMapper: UserMapper,
   ) {}
 
@@ -19,7 +21,7 @@ export class UserService implements UserRegisterUseCase {
     const requestUserEntity: UserEntity =
       this.userMapper.toEntityfromDomain(user);
     const userEntity: UserEntity =
-      await this.userAdapter.createUser(requestUserEntity);
+      await this.userSaveUser.createUser(requestUserEntity);
     console.log(userEntity);
     return this.userMapper.toDtofromEntity(userEntity);
   }
@@ -28,8 +30,8 @@ export class UserService implements UserRegisterUseCase {
     return `This action returns all user`;
   }
 
-  async findByRandomIdUserInfo(id: number): Promise<UserDto> {
-    const userEntity: UserEntity = await this.userAdapter.findByRandomId(id);
+  async findByRandomIdUserInfo(id: string): Promise<UserDto> {
+    const userEntity: UserEntity = await this.userLoadUser.findByRandomId(id);
     return this.userMapper.toDtofromEntity(userEntity);
   }
 
