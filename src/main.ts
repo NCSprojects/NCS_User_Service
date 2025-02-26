@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
+import { LoggingInterceptor } from './common/interceptor/LoggingInterceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -26,6 +27,7 @@ async function bootstrap() {
     },
   });
   await app.startAllMicroservices();
+  app.useGlobalInterceptors(new LoggingInterceptor());
   await app.listen(process.env.PORT ?? 3001);
 }
 bootstrap();
