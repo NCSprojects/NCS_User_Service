@@ -1,7 +1,9 @@
 import { UserEntity } from '../entities/user.entity';
 import { User } from '../domain/user';
 import { UserDto } from '../dto/create-user.dto';
+import { UserInterface } from '../dto/create-user-grpc.dto';
 
+// static 으로 해도 좋을듯 하다.
 export class UserMapper {
   toDomainfromEntity(userEntity: UserEntity): User {
     const user: User = new User();
@@ -51,5 +53,25 @@ export class UserMapper {
       userDto.regDt,
     );
     return user;
+  }
+
+  toUserDtoFromGrpcDto(createUserGrpcDto: UserInterface): UserDto {
+    const createUserDto = new UserDto();
+    createUserDto.id = createUserGrpcDto.randomId;
+    createUserDto.adCnt = createUserGrpcDto.adCnt;
+    createUserDto.cdCnt = createUserGrpcDto.cdCnt;
+    createUserDto.preRev = createUserGrpcDto.preRev;
+    createUserDto.regDt = new Date(createUserGrpcDto.regDt);
+    return createUserDto;
+  }
+
+  toUserInterfaceFromUserDto(userDto: UserDto): UserInterface {
+    const userGrpcDto = new UserInterface();
+    userGrpcDto.randomId = userDto.id;
+    userGrpcDto.adCnt = userDto.adCnt;
+    userGrpcDto.cdCnt = userDto.cdCnt;
+    userGrpcDto.preRev = userDto.preRev;
+    userGrpcDto.regDt = new Date(userDto.regDt).toISOString();
+    return userGrpcDto;
   }
 }
