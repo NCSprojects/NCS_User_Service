@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { typeORMConfig } from '../typeorm.config';
 import { eurekaClient } from '../eureka.config';
-
+import { RedisModule } from '@liaoliaots/nestjs-redis';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -13,6 +13,13 @@ import { eurekaClient } from '../eureka.config';
     }),
     UserModule,
     TypeOrmModule.forRoot(typeORMConfig), // TypeORM 설정을 여기서 사용
+    RedisModule.forRoot({
+      readyLog: true,
+      config: {
+        host: process.env.REDIS_HOST,
+        port: parseInt(process.env.REDIS_PORT),
+      },
+    }),
   ],
   controllers: [],
   providers: [],
