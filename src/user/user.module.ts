@@ -10,6 +10,7 @@ import { UserGrpcController } from './adapter/in.web/user.grpcController';
 import { UserNotificationService } from './application/user.notification.service';
 import { RedisRepository } from './adapter/out.persistence/user.redis.repository';
 import { UserFcmAdapter } from './adapter/out.persistence/user.fcmAdapter';
+import { UserStatsService } from './application/user.stats.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
@@ -22,6 +23,10 @@ import { UserFcmAdapter } from './adapter/out.persistence/user.fcmAdapter';
     {
       provide: 'NotificationUsecase',
       useClass: UserNotificationService,
+    },
+    {
+      provide: 'StatsUsecase',
+      useClass: UserStatsService,
     },
     {
       provide: 'FcmAdapter',

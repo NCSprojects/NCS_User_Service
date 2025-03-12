@@ -16,6 +16,7 @@ import { UserEntity } from '../../entities/user.entity';
 import { UserRegisterUseCase } from '../../application/port/in/user.registerUseCase';
 import { CreateFcmDto } from '../../dto/create-fcm-dto';
 import { UserNotificationUseCase } from '../../application/port/in/user.notificationUseCase';
+import { UserStatsUseCase } from '../../application/port/in/user.statsUseCase';
 // import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
@@ -26,6 +27,8 @@ export class UserController {
     private readonly userRegisterUseCase: UserRegisterUseCase,
     @Inject('NotificationUsecase')
     private readonly userNotificationUseCase: UserNotificationUseCase,
+    @Inject('StatsUsecase')
+    private readonly userStatsUseCase: UserStatsUseCase,
   ) {}
 
   @Post()
@@ -47,6 +50,11 @@ export class UserController {
   // findAll() {
   //   return this.userRegisterUseCase.findAll();
   // }
+
+  @Get('today')
+  todayUser() {
+    return this.userStatsUseCase.getTodayUsers();
+  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {

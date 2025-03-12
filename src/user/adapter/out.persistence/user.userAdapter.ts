@@ -14,4 +14,11 @@ export class UserAdapter implements UserLoadUser, UserSaveUser {
   async findByRandomId(id: string): Promise<UserEntity> {
     return await this.usersRepository.findById(id);
   }
+
+  async findByStartEndDate(
+    startDate: Date,
+    endDate: Date,
+  ): Promise<UserEntity[]> {
+    return await this.usersRepository.findByStartEndDate(startDate, endDate);
+  }
 }

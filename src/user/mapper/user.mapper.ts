@@ -16,6 +16,12 @@ export class UserMapper {
     );
     return user;
   }
+  // 다수의 오브젝트
+  toDomainFromEntities(userEntities: UserEntity[]): User[] {
+    return userEntities.map(
+      (userEntity: UserEntity): User => this.toDomainfromEntity(userEntity),
+    );
+  }
   toEntityfromDomain(user: User): UserEntity {
     const userEntity: UserEntity = new UserEntity();
     userEntity.id = user.randomId;
@@ -42,6 +48,12 @@ export class UserMapper {
     userDto.cdCnt = userEntity.cdCnt;
     userDto.regDt = userEntity.regDt;
     return userDto;
+  }
+
+  toDtofromEntities(userEntities: UserEntity[]): UserDto[] {
+    return userEntities.map(
+      (userEntity: UserEntity): UserDto => this.toDtofromEntity(userEntity),
+    );
   }
   toDomainfromDto(userDto: UserDto): User {
     const user: User = new User();
