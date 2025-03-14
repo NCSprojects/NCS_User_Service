@@ -4,6 +4,7 @@ export class User {
   adCnt: number;
   cdCnt: number;
   regDt: Date;
+  manuYn: boolean;
 
   constructor() {}
 
@@ -13,12 +14,14 @@ export class User {
     adCnt: number,
     cdCnt: number,
     regDt: Date,
+    manuYn: boolean,
   ): User {
     this.randomId = randomId;
     this.adCnt = adCnt;
     this.cdCnt = cdCnt;
     this.preRev = preRev;
     this.regDt = regDt;
+    this.manuYn = manuYn;
     return this;
   }
 }

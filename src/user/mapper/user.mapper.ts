@@ -13,6 +13,7 @@ export class UserMapper {
       userEntity.adCnt,
       userEntity.cdCnt,
       userEntity.regDt,
+      userEntity.manuYn,
     );
     return user;
   }
@@ -63,6 +64,7 @@ export class UserMapper {
       userDto.adCnt,
       userDto.cdCnt,
       userDto.regDt,
+      userDto.manuYn,
     );
     return user;
   }

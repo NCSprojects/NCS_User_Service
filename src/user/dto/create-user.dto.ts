@@ -4,4 +4,5 @@ export class UserDto {
   adCnt: number;
   cdCnt: number;
   regDt: Date;
+  manuYn: boolean;
 }
