@@ -24,4 +24,10 @@ export class User {
     this.manuYn = manuYn;
     return this;
   }
+  public autoCheck(): boolean {
+    if (this.manuYn) {
+      return true;
+    }
+    return false;
+  }
 }
