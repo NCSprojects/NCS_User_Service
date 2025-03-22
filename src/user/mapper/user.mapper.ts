@@ -30,6 +30,7 @@ export class UserMapper {
     userEntity.adCnt = user.adCnt;
     userEntity.cdCnt = user.cdCnt;
     userEntity.regDt = user.regDt;
+    userEntity.manuYn = user.manuYn;
     return userEntity;
   }
   toDtofromDomain(user: User): UserDto {
@@ -39,6 +40,7 @@ export class UserMapper {
     userDto.adCnt = user.adCnt;
     userDto.cdCnt = user.cdCnt;
     userDto.regDt = user.regDt;
+    userDto.manuYn = user.manuYn;
     return userDto;
   }
   toDtofromEntity(userEntity: UserEntity): UserDto {
@@ -48,6 +50,7 @@ export class UserMapper {
     userDto.adCnt = userEntity.adCnt;
     userDto.cdCnt = userEntity.cdCnt;
     userDto.regDt = userEntity.regDt;
+    userDto.manuYn = userEntity.manuYn;
     return userDto;
   }
 
@@ -76,6 +79,7 @@ export class UserMapper {
     createUserDto.cdCnt = createUserGrpcDto.cdCnt;
     createUserDto.preRev = createUserGrpcDto.preRev;
     createUserDto.regDt = new Date(createUserGrpcDto.regDt);
+    createUserDto.manuYn = createUserGrpcDto.manuYn;
     return createUserDto;
   }
 
@@ -86,6 +90,7 @@ export class UserMapper {
     userGrpcDto.cdCnt = userDto.cdCnt;
     userGrpcDto.preRev = userDto.preRev;
     userGrpcDto.regDt = new Date(userDto.regDt).toISOString();
+    userGrpcDto.manuYn = userDto.manuYn;
     return userGrpcDto;
   }
 }
